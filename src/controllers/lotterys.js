@@ -17,7 +17,7 @@ let controller = {
             res.render('lotterys/index', {
                 title: i18n.__("Your lotterys"),
                 session: req.session,
-                lotterys: lotterys
+                lotterys: lotterys.reverse()
             });
         }).catch((error)=> {
             console.log(error);
@@ -40,7 +40,7 @@ let controller = {
                 title: i18n.__("Publish lotterys"),
                 domain: config.domain,
                 session: req.session,
-                lotterys: lotterys
+                lotterys: lotterys.reverse()
             });
         }).catch((error)=> {
             console.log(error);

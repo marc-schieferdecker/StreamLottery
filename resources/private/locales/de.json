@@ -56,7 +56,7 @@
 	"Add, update or delete Lotterys and access the statistics.": "Bearbeite, lösche, oder lege neue Verlosungen an und schau in die Statistiken.",
 	"Publish lotterys": "Verlosungen veröffentlichen",
 	"Make lotterys available for your viewers and get an embed link for your streaming software.": "Mache Verlosungen für deine Zuschauer verfügbar und hole dir den Link zum Einbetten in deine Streaming-Software.",
-	"Global setup": "Globale Einstellungen",
+	"Global setup": "Dateien & Einstellungen",
 	"Configure some global setup options for your lotterys.": "Konfiguriere die globalen Einstellungen für deine Verlosungen und verwalte deine Medien.",
 	"Save": "Speichern",
 	"PasswordChangeNotice": "Lass die Kennwort Felder leer, wenn dein aktuelles Kennwort nicht geändert werden soll.",
@@ -249,5 +249,7 @@
 	"Really delete this item?": "Möchtest du das wirklich löschen?",
 	"Delete image?": "Bild löschen?",
 	"Your browser does not support the audio element": "Dein Browser unterstützt keine Audio Elemente",
-	"Delete sound?": "Sound löschen?"
+	"Delete sound?": "Sound löschen?",
+	"Embed": "Einbetten",
+	"Tools": "Tools"
 }

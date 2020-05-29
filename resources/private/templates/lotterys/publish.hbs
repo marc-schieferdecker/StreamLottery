@@ -24,11 +24,16 @@
                 </div>
             {{/unless}}
             {{#each lotterys}}
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex pb-3">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pb-3">
                     <div class="card w-100 shadow-sm {{#unless isPublic}}bg-light{{/unless}}">
                         <div class="card-body">
                             <h5 class="card-title"><a href="/lotterys/edit/{{this._id}}">{{this.name}}</a></h5>
-                            <div class="card-text">
+                            <div class="text-right">
+                                <button class="btn btn-outline-secondary btn-sm" type="button" data-toggle="collapse" data-target="#collapse{{this._id}}" aria-expanded="false" aria-controls="collapse{{this._id}}">
+                                    <i class="fa fa-arrow-alt-circle-down"></i> {{#with ..}}{{__ "Embed"}}{{/with}}
+                                </button>
+                            </div>
+                            <div class="collapse card-text" id="collapse{{this._id}}">
                                 <strong>{{#with ..}}{{__ "Embed lottery widget in your streaming software"}}{{/with}}</strong><br/>
                                 <small><em>{{#with ..}}{{__ "Copy and add the URL as web source"}}{{/with}}.</em></small>
                                 <div class="input-group mb-2">
@@ -71,8 +76,13 @@
                             </div>
                         </div>
                         <div class="text-left card-footer">
-                            <p class="text-center"><strong>{{#with ..}}{{__ "Options"}}{{/with}}</strong></p>
-                            <ul class="list-group mb-2">
+                            <div class="text-center overflow-hidden mb-2">
+                                <strong class="float-left">{{#with ..}}{{__ "Options"}}{{/with}}</strong>
+                                <button class="btn btn-outline-secondary btn-sm float-right" type="button" data-toggle="collapse" data-target="#collapseTools{{this._id}}" aria-expanded="false" aria-controls="collapseTools{{this._id}}">
+                                    <i class="fa fa-arrow-alt-circle-down"></i> {{#with ..}}{{__ "Tools"}}{{/with}}
+                                </button>
+                            </div>
+                            <ul class="list-group collapse" id="collapseTools{{this._id}}">
                                 <li class="list-group-item">
                                     <i class="fas fa-search"></i> <a href="/public/{{this._id}}?preview=true" title="{{#with ..}}{{__ "Preview lottery widget"}}{{/with}}" target="_blank">{{#with ..}}{{__ "Preview lottery widget"}}{{/with}}</a>
                                 </li>
@@ -88,6 +98,8 @@
                                 <li class="list-group-item">
                                     <i class="fas fa-trophy"></i> <a href="/lotterys/simulate/winner/{{this._id}}" title="{{#with ..}}{{__ "Simulate winner"}}{{/with}}">{{#with ..}}{{__ "Simulate winner"}}{{/with}}</a>
                                 </li>
+                            </ul>
+                            <ul class="list-group mb-2">
                                 {{#if this.isPublic}}
                                     <li class="list-group-item bg-danger text-white">
                                         <i class="fas fa-trophy"></i> <a href="/lotterys/drawwinner/{{this._id}}" onclick="modalConfirm('{{#with ..}}{{__ "Draw a winner now?"}}{{/with}}', this.href, '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}'); return false;" class="text-white" title="{{#with ..}}{{__ "Draw winner"}}">{{__ "Draw winner"}}{{/with}}</a>

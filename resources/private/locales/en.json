@@ -56,7 +56,7 @@
 	"Add, update or delete Lotterys and access the statistics.": "Add, update or delete Lotterys and access the statistics.",
 	"Publish lotterys": "Publish lotterys",
 	"Make lotterys available for your viewers and get an embed link for your streaming software.": "Make lotterys available for your viewers and get an embed link for your streaming software.",
-	"Global setup": "Global setup",
+	"Global setup": "Files & setup",
 	"Configure some global setup options for your lotterys.": "Configure some global setup options for your lotterys and manage your media files.",
 	"Save": "Save",
 	"PasswordChangeNotice": "Don't fill out the password fields, if you want to keep your existing password.",
@@ -95,5 +95,7 @@
 	"Impossible": "Impossible",
 	"This lottery is not public.": "This lottery is not public.",
 	"Winner": "Winner",
-	"Ok": "Ok"
+	"Ok": "Ok",
+	"Embed": "Embed",
+	"Tools": "Tools"
 }
