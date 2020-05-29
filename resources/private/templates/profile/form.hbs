@@ -1,0 +1,28 @@
+<div class="content container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-5">{{title}}</h1>
+        </div>
+        <div class="col-12 mx-auto">
+            {{#if success}}
+                <div class="alert alert-success">
+                    {{success}}
+                </div>
+            {{/if}}
+
+            <form action="/profile" method="post" onsubmit="return checkPassword('password','passwordcheck','{{__ "Error"}}','{{__ "Passwords do not match."}}')">
+                {{> signup/form-fields doNotRequirePassword=true}}
+
+                <div class="mt-2 mb-2">
+                    <small>{{__ "PasswordChangeNotice"}}</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="col-auto mt-5">
+                        <button type="submit" class="btn btn-block btn-lg btn-primary">{{__ "Save"}}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

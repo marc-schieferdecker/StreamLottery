@@ -1,0 +1,58 @@
+<div id="lotteryId" class="d-none" data-lottery-id="{{lottery.id}}"></div>
+<div id="applicant{{lottery.id}}" class="applicant {{lottery.userId.setup.applicantAnimationFrom}} {{lottery.userId.setup.applicantAnimationTo}} {{lottery.userId.setup.applicantAnimationDelay}} {{lottery.userId.setup.applicantAnimationMoveSpeed}}">
+    {{#if lottery.userId.setup.applicantTitle}}
+        <div class="row header">
+            <div class="col title {{lottery.userId.setup.applicantHeaderTextAlign}}">
+                <div class="p-2">
+                    {{lottery.userId.setup.applicantTitle}}
+                </div>
+            </div>
+        </div>
+    {{/if}}
+    <div class="row body">
+        <div class="col-auto PublicName">
+            <div class="p-2">
+                John Doe
+            </div>
+        </div>
+        <div class="col PublicMessage {{lottery.userId.setup.applicantBodyTextAlign}}">
+            <div class="p-2">
+                I hope to win!
+            </div>
+        </div>
+    </div>
+</div>
+{{#if lottery.newApplicantSoundId.secure_url}}
+    <audio id="applicantAudio{{lottery.id}}" src="{{lottery.newApplicantSoundId.secure_url}}" audio-volume="{{lottery.userId.setup.applicantAnimationSoundVolume}}"></audio>
+{{/if}}
+
+<style>
+    {{#if lottery.userId.setup.applicantHeaderBackgroundColor}}
+        .applicant .header {
+            background-color: {{lottery.userId.setup.applicantHeaderBackgroundColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.applicantHeaderTextColor}}
+        .applicant .header {
+            color: {{lottery.userId.setup.applicantHeaderTextColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.applicantBodyBackgroundColor}}
+        .applicant .body {
+            background-color: {{lottery.userId.setup.applicantBodyBackgroundColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.applicantBodyTextColor}}
+        .applicant .body {
+            color: {{lottery.userId.setup.applicantBodyTextColor}};
+        }
+    {{/if}}
+</style>
+
+{{#if preview}}
+    <style>
+        .applicant {
+            top: 33%;
+        }
+    </style>
+{{/if}}

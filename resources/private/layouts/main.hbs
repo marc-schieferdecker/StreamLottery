@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="A lottery tool for streamers.">
+    <meta name="author" content="Marc Schieferdecker / Let's Shoot">
+    <link rel="icon" href="/favicon.png" type="image/png">
+
+    <title>StreamLottery - {{title}}</title>
+
+    <!-- Libs CSS -->
+    <link href="/lib/css/libs.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- Custom styles for this template -->
+    <link href="/stylesheets/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-light bg-light static-top">
+    <div class="container">
+        <div class="col-8 pl-0">
+            {{#if session.user._id}}
+                {{#if session.user.avatarId}}
+                    <img src="{{session.user.avatarId.secure_url}}" class="img-fluid rounded-circle mr-2" style="height:38px"/>
+                {{/if}}
+            {{/if}}
+            <a class="navbar-brand" href="/">StreamLottery</a>
+            <a href="/?lang=de">
+                <span class="flag-icon flag-icon-de"></span>
+            </a>
+            <a href="/?lang=en">
+                <span class="flag-icon flag-icon-us"></span>
+            </a>
+        </div>
+        <div class="col-4 text-right">
+            {{#if session.user._id}}
+                <a class="btn btn-success" href="/account">
+                    {{__ "Account"}}
+                </a>
+                <a href="/profile" class="btn btn-outline-secondary" title="{{__ "Manage account"}}"><i class="fas fa-cog fa-lg"></i></a>
+                <a class="btn btn-outline-secondary" href="/logout" title="{{__ "Logout"}}"><i class="fas fa-sign-out-alt fa-lg"></i></a>
+            {{else}}
+                <a class="btn btn-primary" href="/signin">{{__ "Sign in"}}</a>
+            {{/if}}
+        </div>
+    </div>
+</nav>
+
+{{{body}}}
+
+<!-- Footer -->
+<footer class="footer bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+                <ul class="fixedcontent list-inline mb-2">
+                    <li class="list-inline-item">
+                        <a href="/static/about">{{__ "About"}}</a>
+                    </li>
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="/static/contact">{{__ "Contact"}}</a>
+                    </li>
+                    <!--
+                        <li class="list-inline-item">&sdot;</li>
+                        <li class="list-inline-item">
+                            <a href="/static/terms">{{__ "Terms of use"}}</a>
+                        </li>
+                    -->
+                    <li class="list-inline-item">&sdot;</li>
+                    <li class="list-inline-item">
+                        <a href="/static/privacy">{{__ "Privacy policy"}}</a>
+                    </li>
+                </ul>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; <a href="https://letsshootshow.de">Let's Shoot - Marc Schieferdecker</a>. {{__ "All Rights Reserved."}}</p>
+            </div>
+            <div class="col-lg-6 h-100 text-center">
+                <ul class="donationbox list-inline mb-0 border-secondary border float-right float-md-none float-sm-none p-4 bg-white shadow-sm">
+                    <li class="list-inline-item mr-3">
+                        <a href="javascript:void(0);" onclick="$('#donationform').submit()">
+                            <i class="fab fa-paypal fa-2x fa-fw float-left"></i>
+                            <em>{{__ "Do you like StreamLottery? Please donate!"}}</em>
+                            <i class="fas fa-heart fa-2x fa-fw float-right"></i>
+                            <form id="donationform" action="https://www.paypal.com/cgi-bin/webscr" method="post" autocomplete="off">
+                                <input type="hidden" name="cmd" value="_s-xclick" autocomplete="off">
+                                <input type="hidden" name="item_name" value="Streaming Software" autocomplete="off">
+                                <input type="hidden" name="hosted_button_id" value="N3XHP4EAX49B8" autocomplete="off">
+                            </form>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap + jQuery -->
+<script src="/lib/js/libs.min.js"></script>
+<script src="/javascripts/app.js"></script>
+<script>
+    $(document).ready(()=>{
+        console.log('document ready');
+    });
+    window.addEventListener("load", () => {
+        window.cookieconsent.initialise({
+            "palette": {
+                "popup": {
+                    "background": "#0f6674",
+                    "text": "#fff"
+                },
+                "button": {
+                    "background": "#0c5460"
+                }
+            },
+            "showLink": false,
+            "theme": "edgeless",
+            "position": "bottom-right",
+            "content": {
+                "message": "{{__ "Diese Webseite verwendet Cookies."}}",
+                "dismiss": "{{__ "Okay"}}",
+                "link": "{{__ "Mehr Infos"}}"
+            }
+        }
+    )});
+</script>
+</body>
+</html>

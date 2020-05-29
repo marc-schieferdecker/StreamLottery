@@ -1,0 +1,14 @@
+<input type="hidden" name="fieldname" value="{{fieldname}}"/>
+<div class="form-group row">
+    <div class="col-12">
+        <label for="avatar">
+            {{__ "Image"}} ({{filetypes}})
+        </label>
+    </div>
+    <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12 mb-1">
+        <input type="file" name="{{fieldname}}" id="{{fieldname}}" class="form-control form-control-lg" required="required" placeholder="{{__ "Select image from local harddrive"}}...">
+    </div>
+    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-12 mb-1">
+        <button type="submit" class="btn btn-block btn-lg btn-primary">{{__ "Upload"}}</button>
+    </div>
+</div>

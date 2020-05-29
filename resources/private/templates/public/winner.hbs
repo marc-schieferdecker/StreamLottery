@@ -1,0 +1,61 @@
+<div id="lotteryId" class="d-none" data-lottery-id="{{lottery.id}}"></div>
+<div id="winner{{lottery.id}}" class="winner {{lottery.userId.setup.winnerAnimationFrom}} {{lottery.userId.setup.winnerAnimationTo}} {{lottery.userId.setup.winnerAnimationDelay}} {{lottery.userId.setup.winnerAnimationMoveSpeed}}">
+    <div class="animation text-center">
+        {{#if lottery.winningAnimationId.secure_url}}
+            <img src="{{lottery.winningAnimationId.secure_url}}"/>
+        {{/if}}
+    </div>
+    <div class="row header">
+        <div class="col title {{lottery.userId.setup.winnerHeaderTextAlign}}">
+            <div class="p-2">
+                {{lottery.userId.setup.winnerTitle}}
+            </div>
+        </div>
+    </div>
+    <div class="row body">
+        <div class="col-auto PublicName">
+            <div class="p-2">
+                John Doe
+            </div>
+        </div>
+        <div class="col PublicMessage {{lottery.userId.setup.winnerBodyTextAlign}}">
+            <div class="p-3">
+                Yeah, I won!
+            </div>
+        </div>
+    </div>
+</div>
+{{#if lottery.winningSoundId.secure_url}}
+    <audio id="winnerAudio{{lottery.id}}" src="{{lottery.winningSoundId.secure_url}}" audio-volume="{{lottery.userId.setup.winnerAnimationSoundVolume}}"></audio>
+{{/if}}
+
+<style>
+        {{#if lottery.userId.setup.winnerHeaderBackgroundColor}}
+        .winner .header {
+            background-color: {{lottery.userId.setup.winnerHeaderBackgroundColor}};
+        }
+        {{/if}}
+        {{#if lottery.userId.setup.winnerHeaderTextColor}}
+        .winner .header {
+            color: {{lottery.userId.setup.winnerHeaderTextColor}};
+        }
+        {{/if}}
+        {{#if lottery.userId.setup.winnerBodyBackgroundColor}}
+        .winner .body {
+            background-color: {{lottery.userId.setup.winnerBodyBackgroundColor}};
+        }
+        {{/if}}
+        {{#if lottery.userId.setup.winnerBodyTextColor}}
+        .winner .body {
+            color: {{lottery.userId.setup.winnerBodyTextColor}};
+        }
+        {{/if}}
+</style>
+
+{{#if preview}}
+    <style>
+        .winner {
+            top: 33%;
+        }
+    </style>
+{{/if}}

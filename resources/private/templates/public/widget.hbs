@@ -1,0 +1,76 @@
+<div id="lotteryId" class="d-none" data-lottery-id="{{lottery.id}}"></div>
+<div class="lottery">
+    <div class="container-fluid">
+        <div class="row header">
+            <div class="col-12 title {{lottery.userId.setup.widgetHeaderTextAlign}}">
+                {{#ifCond lottery.userId.setup.widgetHeaderShowAvatar '==' '1'}}
+                    {{#if lottery.userId.avatarId.secure_url}}
+                        <img src="{{lottery.userId.avatarId.secure_url}}" class="img-fluid {{#ifCond lottery.userId.setup.widgetHeaderAvatarRounded '==' '1'}}rounded-circle{{/ifCond}} mr-2"/>
+                    {{/if}}
+                {{/ifCond}}
+                {{lottery.userId.setup.widgetTitle}}
+            </div>
+        </div>
+        <div class="row body">
+            {{#ifCond lottery.productImageId '!=' null}}
+                <div class="col-auto image {{lottery.userId.setup.widgetBodyImagePadding}}">
+                    <img src="{{lottery.productImageId.secure_url}}" class="img-fluid"/>
+                </div>
+            {{/ifCond}}
+            <div class="col description pt-1 {{lottery.userId.setup.widgetBodyTextAlign}}">
+                <h1>{{lottery.name}}</h1>
+                <p>{{lottery.description}}</p>
+                {{#ifCond lottery.userId.setup.widgetShowShortlink '==' '1'}}
+                    {{#if lottery.shortlinkForm}}
+                        <span>{{lottery.userId.setup.widgetShowShortPrependText}}</span> <em>{{lottery.shortlinkForm}}</em>
+                    {{/if}}
+                {{/ifCond}}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    {{#if preview}}
+        body .maincontent {
+            position: absolute;
+            display: table;
+            height: 100%;
+            width: 800px;
+            margin-left: calc(50% - 400px);
+        }
+        .lottery {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.widgetHeaderTextColor}}
+        .lottery .header {
+            color: {{lottery.userId.setup.widgetHeaderTextColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.widgetHeaderBackgroundColor}}
+        .lottery .header {
+            background-color: {{lottery.userId.setup.widgetHeaderBackgroundColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.widgetBodyBackgroundColor}}
+        .lottery .body {
+            background-color: {{lottery.userId.setup.widgetBodyBackgroundColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.widgetBodyTextColor}}
+        .lottery .body {
+            color: {{lottery.userId.setup.widgetBodyTextColor}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.widgetHeaderAvatarAlign}}
+        .lottery .title img {
+            float: {{lottery.userId.setup.widgetHeaderAvatarAlign}};
+        }
+    {{/if}}
+    {{#if lottery.userId.setup.widgetImageTransparency}}
+        .lottery .title img, .lottery .body img {
+            opacity: {{lottery.userId.setup.widgetImageTransparency}};
+        }
+    {{/if}}
+</style>

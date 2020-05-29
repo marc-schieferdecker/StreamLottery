@@ -1,0 +1,70 @@
+<div class="form-group row">
+    <div class="col-12">
+        <label for="name">
+            {{__ "Your name"}}
+        </label>
+    </div>
+    <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12">
+        <input type="text" name="name" id="name" value="{{name}}" class="form-control form-control-lg {{#if errors.name.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter your name"}}...">
+        {{#if errors.name.message}}
+            <small class="text-danger">{{errors.name.message}}</small>
+        {{/if}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="email">
+            {{__ "Your email address"}}
+        </label>
+    </div>
+    <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12">
+        <input type="email" name="email" id="email" value="{{email}}" class="form-control form-control-lg {{#if errors.email.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter your email"}}...">
+        {{#if errors.email.message}}
+            <small class="text-danger">{{errors.email.message}}</small>
+        {{/if}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="password">
+            {{__ "Password"}}
+        </label>
+    </div>
+    <div class="col-xl-5 col-lg-6 col-md-7 col-sm-12">
+        <input type="password" name="password" id="password" value="" class="form-control form-control-lg {{#if errors.password.message}}border-danger{{/if}}" {{#unless doNotRequirePassword}}required="required"{{/unless}} placeholder="{{__ "Enter your password"}}...">
+        {{#if errors.password.message}}
+            <small class="text-danger">{{errors.password.message}}</small>
+        {{/if}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="passwordcheck">
+            {{__ "Password check"}}
+        </label>
+    </div>
+    <div class="col-xl-5 col-lg-6 col-md-7 col-sm-12">
+        <input type="password" name="passwordcheck" id="passwordcheck" value="" class="form-control form-control-lg" {{#unless doNotRequirePassword}}required="required"{{/unless}} placeholder="{{__ "Enter your password again"}}...">
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="timezone">
+            {{__ "Timezone"}}
+        </label>
+    </div>
+    <div class="col-xl-5 col-lg-6 col-md-7 col-sm-12">
+        <select name="timezone" id="timezone" data-live-search="true" data-show-tick="true" class="selectpicker {{#if errors.timezone.message}}border-danger{{/if}}" required="required" title="{{__ "Choose timezone"}}">
+            {{#each timezones}}
+                <option value="{{this}}"{{#ifCond ../timezone '==' this}} selected="selected"{{/ifCond}}>{{this}}</option>
+            {{/each}}
+        </select>
+        {{#if errors.timezone.message}}
+            <br/><small class="text-danger">{{errors.timezone.message}}</small>
+        {{/if}}
+    </div>
+</div>

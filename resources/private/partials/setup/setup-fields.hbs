@@ -1,0 +1,736 @@
+<fieldset class="row mb-4">
+    <div class="col">
+        <legend>{{__ "General"}}</legend>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label for="widgetTitle">
+                            {{__ "Widget title"}}
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" name="widgetTitle" id="widgetTitle" value="{{#if widgetTitle}}{{widgetTitle}}{{else}}{{__ "Todays lottery"}}{{/if}}" class="form-control form-control-lg {{#if errors.widgetTitle.message}}border-danger{{/if}}" placeholder="{{__ "Enter the title for your widget"}}...">
+                        {{#if errors.widgetTitle.message}}
+                            <small class="text-danger">{{errors.widgetTitle.message}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label for="applicantTitle">
+                            {{__ "New applicant title"}}
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" name="applicantTitle" id="applicantTitle" value="{{#if applicantTitle}}{{applicantTitle}}{{else}}{{__ "New applicant!"}}{{/if}}" class="form-control form-control-lg {{#if errors.applicantTitle.message}}border-danger{{/if}}" placeholder="{{__ "Enter the title for your widget"}}...">
+                        {{#if errors.applicantTitle.message}}
+                            <small class="text-danger">{{errors.applicantTitle.message}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label for="winnerTitle">
+                            {{__ "Winner title"}}
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <input type="text" name="winnerTitle" id="winnerTitle" value="{{#if winnerTitle}}{{winnerTitle}}{{else}}{{__ "And the winner is..."}}{{/if}}" class="form-control form-control-lg {{#if errors.winnerTitle.message}}border-danger{{/if}}" placeholder="{{__ "Enter the title for your widget"}}...">
+                        {{#if errors.winnerTitle.message}}
+                            <small class="text-danger">{{errors.winnerTitle.message}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                <div class="form-group row">
+                    <div class="col-12">
+                        <label for="widgetImageTransparency">
+                            {{__ "Transparency value of images (avatar, product, ...)"}}
+                        </label>
+                    </div>
+                    <div class="col-12">
+                        <input type="number" min="0" max="1" step="0.01" name="widgetImageTransparency" id="widgetImageTransparency" value="{{#if widgetImageTransparency}}{{widgetImageTransparency}}{{else}}1{{/if}}" class="form-control form-control-lg {{#if errors.widgetImageTransparency.message}}border-danger{{/if}}" placeholder="{{__ "Enter a value between 0 and 1"}}...">
+                        {{#if errors.widgetImageTransparency.message}}
+                            <small class="text-danger">{{errors.widgetImageTransparency.message}}</small>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</fieldset>
+
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <fieldset>
+            <legend>{{__ "Widget header settings"}}</legend>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetHeaderBackgroundColor">
+                        {{__ "Widget header background"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="widgetHeaderBackgroundColor" id="widgetHeaderBackgroundColor" value="{{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#0c5460{{/if}}" class="form-control form-control-lg {{#if errors.widgetHeaderBackgroundColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="widgetHeaderBackgroundColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#0c5460{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.widgetHeaderBackgroundColor.message}}
+                        <small class="text-danger">{{errors.widgetHeaderBackgroundColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetHeaderTextColor">
+                        {{__ "Widget header text color"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="widgetHeaderTextColor" id="widgetHeaderTextColor" value="{{#if widgetHeaderTextColor}}{{widgetHeaderTextColor}}{{else}}#fff{{/if}}" class="form-control form-control-lg {{#if errors.widgetHeaderTextColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="widgetHeaderTextColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#fff{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.widgetHeaderTextColor.message}}
+                        <small class="text-danger">{{errors.widgetHeaderTextColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetHeaderTextAlign">
+                        {{__ "Widget header text align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetHeaderTextAlign" id="widgetHeaderTextAlign" class="selectpicker {{#if errors.widgetHeaderTextAlign.message}}border-danger{{/if}}">
+                        <option value="text-center" {{#ifCond widgetHeaderTextAlign '==' 'text-center'}}selected="selected"{{/ifCond}}>{{__ "Center"}}</option>
+                        <option value="text-left" {{#ifCond widgetHeaderTextAlign '==' 'text-left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="text-right" {{#ifCond widgetHeaderTextAlign '==' 'text-right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.widgetHeaderTextAlign.message}}
+                        <small class="text-danger">{{errors.widgetHeaderTextAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetHeaderShowAvatar">
+                        {{__ "Widget header include avatar image"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetHeaderShowAvatar" id="widgetHeaderShowAvatar" class="selectpicker {{#if errors.widgetHeaderShowAvatar.message}}border-danger{{/if}}">
+                        <option value="1" {{#ifCond widgetHeaderShowAvatar '==' '1'}}selected="selected"{{/ifCond}}>{{__ "Yes"}}</option>
+                        <option value="0" {{#ifCond widgetHeaderShowAvatar '==' '0'}}selected="selected"{{/ifCond}}>{{__ "No"}}</option>
+                    </select>
+                    {{#if errors.widgetHeaderShowAvatar.message}}
+                        <small class="text-danger">{{errors.widgetHeaderShowAvatar.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetHeaderAvatarAlign">
+                        {{__ "Widget header avatar align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetHeaderAvatarAlign" id="widgetHeaderAvatarAlign" class="selectpicker {{#if errors.widgetHeaderAvatarAlign.message}}border-danger{{/if}}">
+                        <option value="left" {{#ifCond widgetHeaderAvatarAlign '==' 'left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="right" {{#ifCond widgetHeaderAvatarAlign '==' 'right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.widgetHeaderAvatarAlign.message}}
+                        <small class="text-danger">{{errors.widgetHeaderAvatarAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetHeaderAvatarRounded">
+                        {{__ "Widget header rounded avatar image"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetHeaderAvatarRounded" id="widgetHeaderAvatarRounded" class="selectpicker {{#if errors.widgetHeaderAvatarRounded.message}}border-danger{{/if}}">
+                        <option value="1" {{#ifCond widgetHeaderAvatarRounded '==' '1'}}selected="selected"{{/ifCond}}>{{__ "Yes"}}</option>
+                        <option value="0" {{#ifCond widgetHeaderAvatarRounded '==' '0'}}selected="selected"{{/ifCond}}>{{__ "No"}}</option>
+                    </select>
+                    {{#if errors.widgetHeaderAvatarRounded.message}}
+                        <small class="text-danger">{{errors.widgetHeaderAvatarRounded.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <fieldset>
+            <legend>{{__ "Widget body settings"}}</legend>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetBodyBackgroundColor">
+                        {{__ "Widget body background"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="widgetBodyBackgroundColor" id="widgetBodyBackgroundColor" value="{{#if widgetBodyBackgroundColor}}{{widgetBodyBackgroundColor}}{{else}}#0f6674{{/if}}" class="form-control form-control-lg {{#if errors.widgetBodyBackgroundColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="widgetBodyBackgroundColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetBodyBackgroundColor}}{{widgetBodyBackgroundColor}}{{else}}#0f6674{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.widgetBodyBackgroundColor.message}}
+                        <small class="text-danger">{{errors.widgetBodyBackgroundColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetBodyTextColor">
+                        {{__ "Widget body text color"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="widgetBodyTextColor" id="widgetBodyTextColor" value="{{#if widgetBodyTextColor}}{{widgetBodyTextColor}}{{else}}#fff{{/if}}" class="form-control form-control-lg {{#if errors.widgetBodyTextColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="widgetBodyTextColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#fff{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.widgetBodyTextColor.message}}
+                        <small class="text-danger">{{errors.widgetBodyTextColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetBodyTextAlign">
+                        {{__ "Widget body text align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetBodyTextAlign" id="widgetBodyTextAlign" class="selectpicker {{#if errors.widgetBodyTextAlign.message}}border-danger{{/if}}">
+                        <option value="text-center" {{#ifCond widgetBodyTextAlign '==' 'text-center'}}selected="selected"{{/ifCond}}>{{__ "Center"}}</option>
+                        <option value="text-left" {{#ifCond widgetBodyTextAlign '==' 'text-left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="text-right" {{#ifCond widgetBodyTextAlign '==' 'text-right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.widgetBodyTextAlign.message}}
+                        <small class="text-danger">{{errors.widgetBodyTextAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetShowShortlink">
+                        {{__ "Widget body show short link"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetShowShortlink" id="widgetShowShortlink" class="selectpicker {{#if errors.widgetShowShortlink.message}}border-danger{{/if}}">
+                        <option value="1" {{#ifCond widgetShowShortlink '==' '1'}}selected="selected"{{/ifCond}}>{{__ "Yes"}}</option>
+                        <option value="0" {{#ifCond widgetShowShortlink '==' '0'}}selected="selected"{{/ifCond}}>{{__ "No"}}</option>
+                    </select>
+                    {{#if errors.widgetShowShortlink.message}}
+                        <small class="text-danger">{{errors.widgetShowShortlink.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetShowShortPrependText">
+                        {{__ "Widget body prepend short link with text"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <input type="text" name="widgetShowShortPrependText" id="widgetShowShortPrependText" value="{{#if widgetShowShortPrependText}}{{widgetShowShortPrependText}}{{else}}{{__ "Apply here:"}}{{/if}}" class="form-control form-control-lg {{#if errors.widgetShowShortPrependText.message}}border-danger{{/if}}" placeholder="{{__ "Enter the text to prepend the link with"}}...">
+                    {{#if errors.widgetShowShortPrependText.message}}
+                        <small class="text-danger">{{errors.widgetShowShortPrependText.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="widgetBodyImagePadding">
+                        {{__ "Product image padding"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="widgetBodyImagePadding" id="widgetBodyImagePadding" class="selectpicker {{#if errors.widgetBodyImagePadding.message}}border-danger{{/if}}">
+                        <option value="p-0" {{#ifCond widgetBodyImagePadding '==' 'p-0'}}selected="selected"{{/ifCond}}>0</option>
+                        <option value="p-1" {{#ifCond widgetBodyImagePadding '==' 'p-1'}}selected="selected"{{/ifCond}}>1</option>
+                        <option value="p-2" {{#ifCond widgetBodyImagePadding '==' 'p-2'}}selected="selected"{{/ifCond}}>2</option>
+                        <option value="p-3" {{#ifCond widgetBodyImagePadding '==' 'p-3'}}selected="selected"{{/ifCond}}>3</option>
+                        <option value="p-4" {{#ifCond widgetBodyImagePadding '==' 'p-4'}}selected="selected"{{/ifCond}}>4</option>
+                        <option value="p-5" {{#ifCond widgetBodyImagePadding '==' 'p-5'}}selected="selected"{{/ifCond}}>5</option>
+                    </select>
+                    {{#if errors.widgetBodyImagePadding.message}}
+                        <small class="text-danger">{{errors.widgetBodyImagePadding.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <fieldset>
+            <legend>{{__ "New applicant settings"}}</legend>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantHeaderBackgroundColor">
+                        {{__ "New applicant header background"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="applicantHeaderBackgroundColor" id="applicantHeaderBackgroundColor" value="{{#if applicantHeaderBackgroundColor}}{{applicantHeaderBackgroundColor}}{{else}}#0c5460{{/if}}" class="form-control form-control-lg {{#if errors.applicantHeaderBackgroundColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="applicantHeaderBackgroundColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if applicantHeaderBackgroundColor}}{{applicantHeaderBackgroundColor}}{{else}}#0c5460{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.applicantHeaderBackgroundColor.message}}
+                        <small class="text-danger">{{errors.applicantHeaderBackgroundColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantHeaderTextColor">
+                        {{__ "New applicant header text color"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="applicantHeaderTextColor" id="applicantHeaderTextColor" value="{{#if applicantHeaderTextColor}}{{applicantHeaderTextColor}}{{else}}#fff{{/if}}" class="form-control form-control-lg {{#if errors.applicantHeaderTextColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="applicantHeaderTextColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#fff{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.applicantHeaderTextColor.message}}
+                        <small class="text-danger">{{errors.applicantHeaderTextColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantHeaderTextAlign">
+                        {{__ "New applicant header text align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="applicantHeaderTextAlign" id="applicantHeaderTextAlign" class="selectpicker {{#if errors.applicantHeaderTextAlign.message}}border-danger{{/if}}">
+                        <option value="text-left" {{#ifCond applicantHeaderTextAlign '==' 'text-left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="text-center" {{#ifCond applicantHeaderTextAlign '==' 'text-center'}}selected="selected"{{/ifCond}}>{{__ "Center"}}</option>
+                        <option value="text-right" {{#ifCond applicantHeaderTextAlign '==' 'text-right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.applicantHeaderTextAlign.message}}
+                        <small class="text-danger">{{errors.applicantHeaderTextAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantBodyBackgroundColor">
+                        {{__ "New applicant body background"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="applicantBodyBackgroundColor" id="applicantBodyBackgroundColor" value="{{#if applicantBodyBackgroundColor}}{{applicantBodyBackgroundColor}}{{else}}#0f6674{{/if}}" class="form-control form-control-lg {{#if errors.applicantBodyBackgroundColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="applicantBodyBackgroundColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if applicantBodyBackgroundColor}}{{applicantBodyBackgroundColor}}{{else}}#0f6674{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.applicantBodyBackgroundColor.message}}
+                        <small class="text-danger">{{errors.applicantBodyBackgroundColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantBodyTextColor">
+                        {{__ "New applicant body text color"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="applicantBodyTextColor" id="applicantBodyTextColor" value="{{#if applicantBodyTextColor}}{{applicantBodyTextColor}}{{else}}#fff{{/if}}" class="form-control form-control-lg {{#if errors.applicantBodyTextColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="applicantBodyTextColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#fff{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.applicantBodyTextColor.message}}
+                        <small class="text-danger">{{errors.applicantBodyTextColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantBodyTextAlign">
+                        {{__ "New applicant body text align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="applicantBodyTextAlign" id="applicantBodyTextAlign" class="selectpicker {{#if errors.applicantBodyTextAlign.message}}border-danger{{/if}}">
+                        <option value="text-left" {{#ifCond applicantBodyTextAlign '==' 'text-left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="text-center" {{#ifCond applicantBodyTextAlign '==' 'text-center'}}selected="selected"{{/ifCond}}>{{__ "Center"}}</option>
+                        <option value="text-right" {{#ifCond applicantBodyTextAlign '==' 'text-right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.applicantBodyTextAlign.message}}
+                        <small class="text-danger">{{errors.applicantBodyTextAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantAnimationFrom">
+                        {{__ "New applicant animation starts"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="applicantAnimationFrom" id="applicantAnimationFrom" class="selectpicker {{#if errors.applicantAnimationFrom.message}}border-danger{{/if}}">
+                        <option value="fromBottom" {{#ifCond applicantAnimationFrom '==' 'fromBottom'}}selected="selected"{{/ifCond}}>{{__ "from bottom"}}</option>
+                        <option value="fromTop" {{#ifCond applicantAnimationFrom '==' 'fromTop'}}selected="selected"{{/ifCond}}>{{__ "from top"}}</option>
+                        <option value="fromLeft" {{#ifCond applicantAnimationFrom '==' 'fromLeft'}}selected="selected"{{/ifCond}}>{{__ "from left"}}</option>
+                        <option value="fromRight" {{#ifCond applicantAnimationFrom '==' 'fromRight'}}selected="selected"{{/ifCond}}>{{__ "from right"}}</option>
+                    </select>
+                    {{#if errors.applicantAnimationFrom.message}}
+                        <small class="text-danger">{{errors.applicantAnimationFrom.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantAnimationTo">
+                        {{__ "New applicant animation ends"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="applicantAnimationTo" id="applicantAnimationTo" class="selectpicker {{#if errors.applicantAnimationTo.message}}border-danger{{/if}}">
+                        <option value="toBottom" {{#ifCond applicantAnimationTo '==' 'toBottom'}}selected="selected"{{/ifCond}}>{{__ "on bottom"}}</option>
+                        <option value="toTop" {{#ifCond applicantAnimationTo '==' 'toTop'}}selected="selected"{{/ifCond}}>{{__ "on top"}}</option>
+                        <option value="toLeft" {{#ifCond applicantAnimationTo '==' 'toLeft'}}selected="selected"{{/ifCond}}>{{__ "on left"}}</option>
+                        <option value="toRight" {{#ifCond applicantAnimationTo '==' 'toRight'}}selected="selected"{{/ifCond}}>{{__ "on right"}}</option>
+                    </select>
+                    {{#if errors.applicantAnimationTo.message}}
+                        <small class="text-danger">{{errors.applicantAnimationTo.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantAnimationDelay">
+                        {{__ "New applicant delay before ending animation starts"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="applicantAnimationDelay" id="applicantAnimationDelay" class="selectpicker {{#if errors.applicantAnimationDelay.message}}border-danger{{/if}}">
+                        <option value="delayShort" {{#ifCond applicantAnimationDelay '==' 'delayShort'}}selected="selected"{{/ifCond}}>{{__ "short"}}</option>
+                        <option value="delayMedium" {{#ifCond applicantAnimationDelay '==' 'delayMedium'}}selected="selected"{{/ifCond}}>{{__ "medium"}}</option>
+                        <option value="delayLong" {{#ifCond applicantAnimationDelay '==' 'delayLong'}}selected="selected"{{/ifCond}}>{{__ "long"}}</option>
+                    </select>
+                    {{#if errors.applicantAnimationDelay.message}}
+                        <small class="text-danger">{{errors.applicantAnimationDelay.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantAnimationMoveSpeed">
+                        {{__ "New applicant animation movement speed"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="applicantAnimationMoveSpeed" id="applicantAnimationMoveSpeed" class="selectpicker {{#if errors.applicantAnimationMoveSpeed.message}}border-danger{{/if}}">
+                        <option value="moveVeryfast" {{#ifCond applicantAnimationMoveSpeed '==' 'moveVeryfast'}}selected="selected"{{/ifCond}}>{{__ "very fast"}}</option>
+                        <option value="moveFast" {{#ifCond applicantAnimationMoveSpeed '==' 'moveFast'}}selected="selected"{{/ifCond}}>{{__ "fast"}}</option>
+                        <option value="moveSlow" {{#ifCond applicantAnimationMoveSpeed '==' 'moveSlow'}}selected="selected"{{/ifCond}}>{{__ "slow"}}</option>
+                    </select>
+                    {{#if errors.applicantAnimationMoveSpeed.message}}
+                        <small class="text-danger">{{errors.applicantAnimationMoveSpeed.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="applicantAnimationSoundVolume">
+                        {{__ "New applicant sound volume"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <input type="range" min="0" max="1" step="0.01" name="applicantAnimationSoundVolume" id="applicantAnimationSoundVolume" value="{{#if applicantAnimationSoundVolume}}{{applicantAnimationSoundVolume}}{{else}}1{{/if}}" class="form-control-range form-control-lg {{#if errors.applicantAnimationSoundVolume.message}}border-danger{{/if}}"/>
+                    {{#if errors.applicantAnimationSoundVolume.message}}
+                        <small class="text-danger">{{errors.applicantAnimationSoundVolume.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+        <fieldset>
+            <legend>{{__ "Winner settings"}}</legend>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerHeaderBackgroundColor">
+                        {{__ "Winner header background"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="winnerHeaderBackgroundColor" id="winnerHeaderBackgroundColor" value="{{#if winnerHeaderBackgroundColor}}{{winnerHeaderBackgroundColor}}{{else}}#0c5460{{/if}}" class="form-control form-control-lg {{#if errors.winnerHeaderBackgroundColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="winnerHeaderBackgroundColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if winnerHeaderBackgroundColor}}{{winnerHeaderBackgroundColor}}{{else}}#0c5460{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.winnerHeaderBackgroundColor.message}}
+                        <small class="text-danger">{{errors.winnerHeaderBackgroundColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerHeaderTextColor">
+                        {{__ "Winner header text color"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="winnerHeaderTextColor" id="winnerHeaderTextColor" value="{{#if winnerHeaderTextColor}}{{winnerHeaderTextColor}}{{else}}#fff{{/if}}" class="form-control form-control-lg {{#if errors.winnerHeaderTextColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="winnerHeaderTextColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#fff{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.winnerHeaderTextColor.message}}
+                        <small class="text-danger">{{errors.winnerHeaderTextColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerHeaderTextAlign">
+                        {{__ "Winner header text align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="winnerHeaderTextAlign" id="winnerHeaderTextAlign" class="selectpicker {{#if errors.winnerHeaderTextAlign.message}}border-danger{{/if}}">
+                        <option value="text-left" {{#ifCond winnerHeaderTextAlign '==' 'text-left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="text-center" {{#ifCond winnerHeaderTextAlign '==' 'text-center'}}selected="selected"{{/ifCond}}>{{__ "Center"}}</option>
+                        <option value="text-right" {{#ifCond winnerHeaderTextAlign '==' 'text-right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.winnerHeaderTextAlign.message}}
+                        <small class="text-danger">{{errors.winnerHeaderTextAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerBodyBackgroundColor">
+                        {{__ "Winner body background"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="winnerBodyBackgroundColor" id="winnerBodyBackgroundColor" value="{{#if winnerBodyBackgroundColor}}{{winnerBodyBackgroundColor}}{{else}}#0f6674{{/if}}" class="form-control form-control-lg {{#if errors.winnerBodyBackgroundColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="winnerBodyBackgroundColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if winnerBodyBackgroundColor}}{{winnerBodyBackgroundColor}}{{else}}#0f6674{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.winnerBodyBackgroundColor.message}}
+                        <small class="text-danger">{{errors.winnerBodyBackgroundColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerBodyTextColor">
+                        {{__ "Winner body text color"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" name="winnerBodyTextColor" id="winnerBodyTextColor" value="{{#if winnerBodyTextColor}}{{winnerBodyTextColor}}{{else}}#fff{{/if}}" class="form-control form-control-lg {{#if errors.winnerBodyTextColor.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Select color..."}}...">
+                        <span class="input-group-append">
+                            <span class="input-group-text colorpicker" colorpicker-data-target="winnerBodyTextColor" colorpicker-text-cancel="{{__ "Cancel"}}" colorpicker-text-choose="{{__ "Choose"}}">
+                                <i class="fas fa-palette" style="color: {{#if widgetHeaderBackgroundColor}}{{widgetHeaderBackgroundColor}}{{else}}#fff{{/if}}"></i>
+                            </span>
+                        </span>
+                    </div>
+                    {{#if errors.winnerBodyTextColor.message}}
+                        <small class="text-danger">{{errors.winnerBodyTextColor.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerBodyTextAlign">
+                        {{__ "Winner body text align"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="winnerBodyTextAlign" id="winnerBodyTextAlign" class="selectpicker {{#if errors.winnerBodyTextAlign.message}}border-danger{{/if}}">
+                        <option value="text-left" {{#ifCond winnerBodyTextAlign '==' 'text-left'}}selected="selected"{{/ifCond}}>{{__ "Left"}}</option>
+                        <option value="text-center" {{#ifCond winnerBodyTextAlign '==' 'text-center'}}selected="selected"{{/ifCond}}>{{__ "Center"}}</option>
+                        <option value="text-right" {{#ifCond winnerBodyTextAlign '==' 'text-right'}}selected="selected"{{/ifCond}}>{{__ "Right"}}</option>
+                    </select>
+                    {{#if errors.winnerBodyTextAlign.message}}
+                        <small class="text-danger">{{errors.winnerBodyTextAlign.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerAnimationFrom">
+                        {{__ "Winner animation starts"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="winnerAnimationFrom" id="winnerAnimationFrom" class="selectpicker {{#if errors.winnerAnimationFrom.message}}border-danger{{/if}}">
+                        <option value="fromBottom" {{#ifCond winnerAnimationFrom '==' 'fromBottom'}}selected="selected"{{/ifCond}}>{{__ "from bottom"}}</option>
+                        <option value="fromTop" {{#ifCond winnerAnimationFrom '==' 'fromTop'}}selected="selected"{{/ifCond}}>{{__ "from top"}}</option>
+                        <option value="fromLeft" {{#ifCond winnerAnimationFrom '==' 'fromLeft'}}selected="selected"{{/ifCond}}>{{__ "from left"}}</option>
+                        <option value="fromRight" {{#ifCond winnerAnimationFrom '==' 'fromRight'}}selected="selected"{{/ifCond}}>{{__ "from right"}}</option>
+                    </select>
+                    {{#if errors.winnerAnimationFrom.message}}
+                        <small class="text-danger">{{errors.winnerAnimationFrom.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerAnimationTo">
+                        {{__ "Winner animation ends"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="winnerAnimationTo" id="winnerAnimationTo" class="selectpicker {{#if errors.winnerAnimationTo.message}}border-danger{{/if}}">
+                        <option value="toBottom" {{#ifCond winnerAnimationTo '==' 'toBottom'}}selected="selected"{{/ifCond}}>{{__ "on bottom"}}</option>
+                        <option value="toTop" {{#ifCond winnerAnimationTo '==' 'toTop'}}selected="selected"{{/ifCond}}>{{__ "on top"}}</option>
+                        <option value="toLeft" {{#ifCond winnerAnimationTo '==' 'toLeft'}}selected="selected"{{/ifCond}}>{{__ "on left"}}</option>
+                        <option value="toRight" {{#ifCond winnerAnimationTo '==' 'toRight'}}selected="selected"{{/ifCond}}>{{__ "on right"}}</option>
+                    </select>
+                    {{#if errors.winnerAnimationTo.message}}
+                        <small class="text-danger">{{errors.winnerAnimationTo.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerAnimationDelay">
+                        {{__ "Winner delay before ending animation starts"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="winnerAnimationDelay" id="winnerAnimationDelay" class="selectpicker {{#if errors.winnerAnimationDelay.message}}border-danger{{/if}}">
+                        <option value="delayShort" {{#ifCond winnerAnimationDelay '==' 'delayShort'}}selected="selected"{{/ifCond}}>{{__ "short"}}</option>
+                        <option value="delayMedium" {{#ifCond winnerAnimationDelay '==' 'delayMedium'}}selected="selected"{{/ifCond}}>{{__ "medium"}}</option>
+                        <option value="delayLong" {{#ifCond winnerAnimationDelay '==' 'delayLong'}}selected="selected"{{/ifCond}}>{{__ "long"}}</option>
+                    </select>
+                    {{#if errors.winnerAnimationDelay.message}}
+                        <small class="text-danger">{{errors.winnerAnimationDelay.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerAnimationMoveSpeed">
+                        {{__ "Winner animation movement speed"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <select name="winnerAnimationMoveSpeed" id="winnerAnimationMoveSpeed" class="selectpicker {{#if errors.winnerAnimationMoveSpeed.message}}border-danger{{/if}}">
+                        <option value="moveVeryfast" {{#ifCond winnerAnimationMoveSpeed '==' 'moveVeryfast'}}selected="selected"{{/ifCond}}>{{__ "very fast"}}</option>
+                        <option value="moveFast" {{#ifCond winnerAnimationMoveSpeed '==' 'moveFast'}}selected="selected"{{/ifCond}}>{{__ "fast"}}</option>
+                        <option value="moveSlow" {{#ifCond winnerAnimationMoveSpeed '==' 'moveSlow'}}selected="selected"{{/ifCond}}>{{__ "slow"}}</option>
+                    </select>
+                    {{#if errors.winnerAnimationMoveSpeed.message}}
+                        <small class="text-danger">{{errors.winnerAnimationMoveSpeed.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-12">
+                    <label for="winnerAnimationSoundVolume">
+                        {{__ "Winner animation sound volume"}}
+                    </label>
+                </div>
+                <div class="col-12">
+                    <input type="range" min="0" max="1" step="0.01" name="winnerAnimationSoundVolume" id="winnerAnimationSoundVolume" value="{{#if winnerAnimationSoundVolume}}{{winnerAnimationSoundVolume}}{{else}}1{{/if}}" class="form-control-range form-control-lg {{#if errors.winnerAnimationSoundVolume.message}}border-danger{{/if}}"/>
+                    {{#if errors.winnerAnimationSoundVolume.message}}
+                        <small class="text-danger">{{errors.winnerAnimationSoundVolume.message}}</small>
+                    {{/if}}
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</div>

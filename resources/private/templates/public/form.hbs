@@ -1,0 +1,255 @@
+{{#if error}}
+    <div class="content container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-5">{{title}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-5">
+                <div class="alert alert-danger mb-5">{{error}}</div>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
+{{#unless applicant}}
+    {{#unless error}}
+        <div class="content container mt-5 mb-5">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="mb-5">{{title}}</h1>
+                </div>
+            </div>
+            <div class="lottery">
+                <div class="container-fluid">
+                    <div class="row header">
+                        <div class="col-12 title text-center">
+                            {{#if lottery.userId.avatarId.secure_url}}
+                                <img src="{{lottery.userId.avatarId.secure_url}}" class="img-fluid {{#ifCond lottery.userId.setup.widgetHeaderAvatarRounded '==' '1'}}rounded-circle{{/ifCond}} mr-2"/>
+                            {{/if}}
+                            {{lottery.name}}
+                        </div>
+                    </div>
+                    <div class="row body">
+                        {{#ifCond lottery.productImageId '!=' null}}
+                            <div class="col-auto image p-2">
+                                <img src="{{lottery.productImageId.secure_url}}" class="img-fluid"/>
+                            </div>
+                        {{/ifCond}}
+                        <div class="col description pt-3">
+                            <p>{{lottery.description}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    {{#if success}}
+                        <div class="alert alert-success">
+                            {{success}}
+                        </div>
+                    {{/if}}
+
+                    <form action="/public/{{lottery.id}}/form" method="post">
+                        <div class="row mb-4">
+                            <div class="col-12 mb-3">
+                                <legend>{{__ "Your public data"}}</legend>
+                                <small>{{__ "This information will be shown in the stream!"}}</small>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="publicName">
+                                            {{__ "Public name"}} <small>({{__ "required"}})</small>
+                                            <small id="publicNameCharsleft">20/20</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="publicName" id="publicName" maxlength="20" data-target-maxlength="publicNameCharsleft" value="{{publicName}}" class="form-control form-control-lg {{#if errors.publicName.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter a nickname or your realname"}}..."/>
+                                        {{#if errors.publicName.message}}
+                                            <small class="text-danger">{{errors.publicName.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="publicMessage">
+                                            {{__ "Public message"}}
+                                            <small id="publicMessageCharsleft">40/40</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="publicMessage" id="publicMessage" maxlength="40" data-target-maxlength="publicMessageCharsleft" value="{{publicMessage}}" class="form-control form-control-lg {{#if errors.publicMessage.message}}border-danger{{/if}}" placeholder="{{__ "Enter a short message"}}..."/>
+                                        {{#if errors.publicMessage.message}}
+                                            <small class="text-danger">{{errors.publicMessage.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="publicWinningMessage">
+                                            {{__ "Public message if you win"}}
+                                            <small id="publicWinningMessageCharsleft">40/40</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="publicWinningMessage" id="publicWinningMessage" data-target-maxlength="publicWinningMessageCharsleft" maxlength="40" value="{{publicWinningMessage}}" class="form-control form-control-lg {{#if errors.publicWinningMessage.message}}border-danger{{/if}}" placeholder="{{__ "Enter a short message"}}..."/>
+                                        {{#if errors.publicWinningMessage.message}}
+                                            <small class="text-danger">{{errors.publicWinningMessage.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12 mb-3">
+                                <legend>{{__ "Your private data"}}</legend>
+                                <small>{{__ "This information is only visible for the streamer!"}}</small>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="email">
+                                            {{__ "Your email address"}} <small>({{__ "required"}})</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="email" name="email" id="email" value="{{email}}" class="form-control form-control-lg {{#if errors.email.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter your email address"}}..."/>
+                                        {{#if errors.email.message}}
+                                            <small class="text-danger">{{errors.email.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="deliverName">
+                                            {{__ "Full name"}} <small>({{__ "required"}})</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="deliverName" id="deliverName" value="{{deliverName}}" class="form-control form-control-lg {{#if errors.deliverName.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Your full name"}}..."/>
+                                        {{#if errors.deliverName.message}}
+                                            <small class="text-danger">{{errors.deliverName.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="deliverStreet">
+                                            {{__ "Street and house no."}} <small>({{__ "required"}})</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="deliverStreet" id="deliverStreet" value="{{deliverStreet}}" class="form-control form-control-lg {{#if errors.deliverStreet.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Your street and house number for delivery"}}..."/>
+                                        {{#if errors.deliverStreet.message}}
+                                            <small class="text-danger">{{errors.deliverStreet.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="deliverZip">
+                                            {{__ "ZIP code"}} <small>({{__ "required"}})</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="number" name="deliverZip" id="deliverZip" value="{{deliverZip}}" class="form-control form-control-lg {{#if errors.deliverZip.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Your ZIP code for delivery"}}..."/>
+                                        {{#if errors.deliverZip.message}}
+                                            <small class="text-danger">{{errors.deliverZip.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="deliverTown">
+                                            {{__ "Town"}} <small>({{__ "required"}})</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="deliverTown" id="deliverTown" value="{{deliverTown}}" class="form-control form-control-lg {{#if errors.deliverTown.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Your town for delivery"}}..."/>
+                                        {{#if errors.deliverTown.message}}
+                                            <small class="text-danger">{{errors.deliverTown.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <label for="deliverCountry">
+                                            {{__ "Country"}} <small>({{__ "required"}})</small>
+                                        </label>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="deliverCountry" id="deliverCountry" value="{{deliverCountry}}" class="form-control form-control-lg {{#if errors.deliverCountry.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Your country for delivery"}}..."/>
+                                        {{#if errors.deliverCountry.message}}
+                                            <small class="text-danger">{{errors.deliverCountry.message}}</small>
+                                        {{/if}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-auto mt-5">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary">{{__ "Apply for lottery"}}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+{{/unless}}
+
+{{#if applicant}}
+    <div class="content container mt-5 mb-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-5">{{title}}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-2">
+                <h2>{{__ "Good luck!"}}</h2>
+            </div>
+            <div class="col-12 mb-2">
+                <p><strong>{{__ "The following data was submitted."}}</strong></p>
+                <table class="table table-bordered">
+                    <tr><th>{{__ "Public name"}}</th><td>{{applicant.publicName}}</td></tr>
+                    <tr><th>{{__ "Public message"}}</th><td>{{applicant.publicMessage}}</td></tr>
+                    <tr><th>{{__ "Public message if you win"}}</th><td>{{applicant.publicWinningMessage}}</td></tr>
+                    <tr><th>{{__ "Your email address"}}</th><td>{{applicant.email}}</td></tr>
+                    <tr><th>{{__ "Full name"}}</th><td>{{applicant.deliverName}}</td></tr>
+                    <tr><th>{{__ "Street and house no."}}</th><td>{{applicant.deliverStreet}}</td></tr>
+                    <tr><th>{{__ "ZIP code"}}</th><td>{{applicant.deliverZip}}</td></tr>
+                    <tr><th>{{__ "Town"}}</th><td>{{applicant.deliverTown}}</td></tr>
+                    <tr><th>{{__ "Country"}}</th><td>{{applicant.deliverCountry}}</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+{{/if}}

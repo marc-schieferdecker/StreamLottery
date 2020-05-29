@@ -1,0 +1,258 @@
+<div class="form-group row">
+    <div class="col-12">
+        <label for="name">
+            {{__ "Lottery name"}}
+        </label>
+    </div>
+    <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12">
+        <input type="text" name="name" id="name" value="{{name}}" class="form-control form-control-lg {{#if errors.name.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter lottery name"}}...">
+        {{#if errors.name.message}}
+            <small class="text-danger">{{errors.name.message}}</small>
+        {{/if}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="description">
+            {{__ "Description"}}
+        </label>
+    </div>
+    <div class="col-12">
+        <textarea name="description" id="description" class="form-control form-control-lg h-100 {{#if errors.description.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter description"}}">{{breaklines description}}</textarea>
+        {{#if errors.description.message}}
+            <small class="text-danger">{{errors.description.message}}</small>
+        {{/if}}
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="description">
+            {{__ "Winner animation"}}
+        </label>
+    </div>
+    <div class="col-12 {{#if errors.description.message}}border-danger{{/if}}">
+        <input type="hidden" name="winningAnimationId" id="winningAnimationId" value="{{winningAnimationId._id}}"/>
+        {{#if errors.description.message}}
+            <small class="text-danger">{{errors.winningAnimationId.message}}</small>
+        {{/if}}
+        <div class="row">
+            {{#if media.length}}
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                    <div class="card mb-3 w-100">
+                        <div class="card-body text-center p-1 m-0">
+                            <div class="p-2 {{#ifCond winningAnimationId._id '==' null}}bg-secondary{{/ifCond}}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#productImageId').val(''); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                    <i class="fas fa-eye-slash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#each media}}
+                    {{#ifCond this.fieldname '==' 'animation'}}
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                            <div class="card mb-3 w-100">
+                                <div class="card-body text-center p-1 m-0">
+                                    <div class="p-2 {{#ifCond this._id '==' ../winningAnimationId._id}}bg-secondary{{/ifCond}}">
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#winningAnimationId').val('{{this._id}}'); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                            <i class="far fa-check-square"></i>
+                                        </a>
+                                    </div>
+                                    <a href="{{this.secure_url}}" class="imagelightbox">
+                                        <img src="{{this.secure_url}}" class="card-img pt-1"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {{/ifCond}}
+                {{/each}}
+            {{else}}
+                <div class="col">
+                    <p>{{__ "No media found"}}.</p>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="description">
+            {{__ "Product image"}}
+        </label>
+    </div>
+    <div class="col-12 {{#if errors.description.message}}border-danger{{/if}}">
+        <input type="hidden" name="productImageId" id="productImageId" value="{{productImageId._id}}"/>
+        {{#if errors.description.message}}
+            <small class="text-danger">{{errors.productImageId.message}}</small>
+        {{/if}}
+        <div class="row">
+            {{#if media.length}}
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                    <div class="card mb-3 w-100">
+                        <div class="card-body text-center p-1 m-0">
+                            <div class="p-2 {{#ifCond productImageId._id '==' null}}bg-secondary{{/ifCond}}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#productImageId').val(''); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                    <i class="fas fa-eye-slash"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#each media}}
+                    {{#ifCond this.fieldname '==' 'image'}}
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                            <div class="card mb-3 w-100">
+                                <div class="card-body text-center p-1 m-0">
+                                    <div class="p-2 {{#ifCond this._id '==' ../productImageId._id}}bg-secondary{{/ifCond}}">
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#productImageId').val('{{this._id}}'); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                            <i class="far fa-check-square"></i>
+                                        </a>
+                                    </div>
+                                    <a href="{{this.secure_url}}" class="imagelightbox">
+                                        <img src="{{this.secure_url}}" class="card-img pt-1"/>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {{/ifCond}}
+                {{/each}}
+            {{else}}
+                <div class="col">
+                    <p>{{__ "No media found"}}.</p>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="description">
+            {{__ "Winning sound"}}
+        </label>
+    </div>
+    <div class="col-12 {{#if errors.description.message}}border-danger{{/if}}">
+        <input type="hidden" name="winningSoundId" id="winningSoundId" value="{{winningSoundId._id}}"/>
+        {{#if errors.description.message}}
+            <small class="text-danger">{{errors.winningSoundId.message}}</small>
+        {{/if}}
+        <div class="row">
+            {{#if media.length}}
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                    <div class="card mb-3 w-100">
+                        <div class="card-body text-center p-1 m-0">
+                            <div class="p-2 {{#ifCond winningSoundId._id '==' null}}bg-secondary{{/ifCond}}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#winningSoundId').val(''); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                    <i class="fas fa-volume-mute"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#each media}}
+                    {{#ifCond this.fieldname '==' 'sound'}}
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                            <div class="card mb-3 w-100">
+                                <div class="card-body text-center p-1 m-0">
+                                    <div class="p-2 {{#ifCond this._id '==' ../winningSoundId._id}}bg-secondary{{/ifCond}}">
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#winningSoundId').val('{{this._id}}'); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                            <i class="far fa-check-square"></i>
+                                        </a>
+                                    </div>
+                                    <div class="mt-1">
+                                        <audio id="{{this._id}}" src="{{this.secure_url}}">{{__ "Your browser does not support the audio element"}}.</audio>
+                                        <a href="javascript:void(0)" class="btn btn-light" onclick="$('#{{this._id}}')[0].currentTime = 0; $('#{{this._id}}')[0].play()"><i class="fas fa-play-circle"></i></a>
+                                        <a href="javascript:void(0)" class="btn btn-light" onclick="$('#{{this._id}}')[0].pause()"><i class="fas fa-stop-circle"></i></a>
+                                    </div>
+                                    <div>
+                                        <small>{{this.originalname}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/ifCond}}
+                {{/each}}
+            {{else}}
+                <div class="col">
+                    <p>{{__ "No media found"}}.</p>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="description">
+            {{__ "New applicant sound"}}
+        </label>
+    </div>
+    <div class="col-12 {{#if errors.description.message}}border-danger{{/if}}">
+        <input type="hidden" name="newApplicantSoundId" id="newApplicantSoundId" value="{{newApplicantSoundId._id}}"/>
+        {{#if errors.description.message}}
+            <small class="text-danger">{{errors.newApplicantSoundId.message}}</small>
+        {{/if}}
+        <div class="row">
+            {{#if media.length}}
+                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                    <div class="card mb-3 w-100">
+                        <div class="card-body text-center p-1 m-0">
+                            <div class="p-2 {{#ifCond newApplicantSoundId._id '==' null}}bg-secondary{{/ifCond}}">
+                                <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#newApplicantSoundId').val(''); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                    <i class="fas fa-volume-mute"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#each media}}
+                    {{#ifCond this.fieldname '==' 'sound'}}
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                            <div class="card mb-3 w-100">
+                                <div class="card-body text-center p-1 m-0">
+                                    <div class="p-2 {{#ifCond this._id '==' ../newApplicantSoundId._id}}bg-secondary{{/ifCond}}">
+                                        <a href="javascript:void(0)" class="btn btn-sm btn-light" onclick="$('#newApplicantSoundId').val('{{this._id}}'); $(this).parent().parent().parent().parent().parent().find('.bg-secondary').removeClass('bg-secondary'); $(this).parent().addClass('bg-secondary'); $(this).blur();">
+                                            <i class="far fa-check-square"></i>
+                                        </a>
+                                    </div>
+                                    <div class="mt-1">
+                                        <audio id="{{this._id}}" src="{{this.secure_url}}">{{__ "Your browser does not support the audio element"}}.</audio>
+                                        <a href="javascript:void(0)" class="btn btn-light" onclick="$('#{{this._id}}')[0].currentTime = 0; $('#{{this._id}}')[0].play()"><i class="fas fa-play-circle"></i></a>
+                                        <a href="javascript:void(0)" class="btn btn-light" onclick="$('#{{this._id}}')[0].pause()"><i class="fas fa-stop-circle"></i></a>
+                                    </div>
+                                    <div>
+                                        <small>{{this.originalname}}</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{/ifCond}}
+                {{/each}}
+            {{else}}
+                <div class="col">
+                    <p>{{__ "No media found"}}.</p>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>
+
+<div class="form-group row">
+    <div class="col-12">
+        <label for="isPublic">
+            {{__ "Is public available?"}}
+        </label>
+    </div>
+    <div class="col-xl-4 col-lg-5 col-md-6 col-sm-12">
+        <select name="isPublic" id="isPublic" class="selectpicker {{#if errors.isPublic.message}}border-danger{{/if}}">
+            <option value="1" {{#if isPublic}}selected="selected"{{/if}}>{{__ "Yes (available for applicants)"}}</option>
+            <option value="0" {{#unless isPublic}}selected="selected"{{/unless}}>{{__ "No (not available for applicants)"}}</option>
+        </select>
+        {{#if errors.isPublic.message}}
+            <small class="text-danger">{{errors.isPublic.message}}</small>
+        {{/if}}
+    </div>
+</div>

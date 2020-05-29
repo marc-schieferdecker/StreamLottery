@@ -1,0 +1,114 @@
+<div class="content container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                <a href="/account"><i class="fas fa-chevron-circle-left"></i></a> {{title}}
+            </h1>
+            <small class="bg-light border border-dark p-1">{{__ "Add lotterys to your streaming software"}}</small>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a href="/lotterys/add" class="btn btn-lg btn-secondary float-right"><i class="fas fa-plus-square fa-sm pr-3"></i>{{__ "Add lottery"}}</a>
+        </div>
+    </div>
+    <hr/>
+    <div class="row mt-2">
+        <div class="col-12 mx-auto mt-5">
+            <div class="row equal">
+            {{#unless lotterys}}
+                <div class="mb-5 w-100">
+                    <div class="alert alert-info mt-5 mb-5 w-100 text-center">
+                        {{__ "No lotterys were found. If you want to add one, please click on the \"Add lottery\" button."}}
+                    </div>
+                </div>
+            {{/unless}}
+            {{#each lotterys}}
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex pb-3">
+                    <div class="card w-100 shadow-sm {{#unless isPublic}}bg-light{{/unless}}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/lotterys/edit/{{this._id}}">{{this.name}}</a></h5>
+                            <div class="card-text">
+                                <strong>{{#with ..}}{{__ "Embed lottery widget in your streaming software"}}{{/with}}</strong><br/>
+                                <small><em>{{#with ..}}{{__ "Copy and add the URL as web source"}}{{/with}}.</em></small>
+                                <div class="input-group mb-2">
+                                    <input id="copy{{this._id}}" type="text" class="form-control" value="https://{{../domain}}/public/{{this._id}}"/>
+                                    <button class="btn btn-light copyToClipboard" data-clipboard-target="#copy{{this._id}}" data-original-title="{{#with ..}}{{__ "Copied"}}{{/with}}!">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+
+                                <strong>{{#with ..}}{{__ "Embed new applicant widget in your streaming software"}}{{/with}}</strong><br/>
+                                <small><em>{{#with ..}}{{__ "Copy and add the URL as web source"}}{{/with}}.</em></small>
+                                <div class="input-group mb-2">
+                                    <input id="copyApplicant{{this._id}}" type="text" class="form-control" value="https://{{../domain}}/public/{{this._id}}/applicant"/>
+                                    <button class="btn btn-light copyToClipboard" data-clipboard-target="#copyApplicant{{this._id}}" data-original-title="{{#with ..}}{{__ "Copied"}}{{/with}}!">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+
+                                <strong>{{#with ..}}{{__ "Embed winning animation widget in your streaming software"}}{{/with}}</strong><br/>
+                                <small><em>{{#with ..}}{{__ "Copy and add the URL as web source"}}{{/with}}.</em></small>
+                                <div class="input-group mb-2">
+                                    <input id="copyWinner{{this._id}}" type="text" class="form-control" value="https://{{../domain}}/public/{{this._id}}/winner"/>
+                                    <button class="btn btn-light copyToClipboard" data-clipboard-target="#copyWinner{{this._id}}" data-original-title="{{#with ..}}{{__ "Copied"}}{{/with}}!">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+
+                                <strong>{{#with ..}}{{__ "Link to applicant form"}}{{/with}}</strong><br/>
+                                <small><em>{{#with ..}}{{__ "Copy and give to your viewers"}}{{/with}}.</em></small>
+                                <div class="input-group">
+                                    {{#if this.shortlinkForm}}
+                                        <input id="copyForm{{this._id}}" type="text" class="form-control" value="{{this.shortlinkForm}}"/>
+                                    {{else}}
+                                        <input id="copyForm{{this._id}}" type="text" class="form-control" value="https://{{../domain}}/public/{{this._id}}/form"/>
+                                    {{/if}}
+                                    <button class="btn btn-light copyToClipboard" data-clipboard-target="#copyForm{{this._id}}" data-original-title="{{#with ..}}{{__ "Copied"}}{{/with}}!">
+                                        <i class="far fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left card-footer">
+                            <p class="text-center"><strong>{{#with ..}}{{__ "Options"}}{{/with}}</strong></p>
+                            <ul class="list-group mb-2">
+                                <li class="list-group-item">
+                                    <i class="fas fa-search"></i> <a href="/public/{{this._id}}?preview=true" title="{{#with ..}}{{__ "Preview lottery widget"}}{{/with}}" target="_blank">{{#with ..}}{{__ "Preview lottery widget"}}{{/with}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-search"></i> <a href="/public/{{this._id}}/applicant?preview=true" title="{{#with ..}}{{__ "Preview new applicant widget"}}{{/with}}" target="_blank">{{#with ..}}{{__ "Preview new applicant widget"}}{{/with}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-search"></i> <a href="/public/{{this._id}}/winner?preview=true" title="{{#with ..}}{{__ "Preview winning animation widget"}}{{/with}}" target="_blank">{{#with ..}}{{__ "Preview winning animation widget"}}{{/with}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-user"></i> <a href="/lotterys/simulate/applicant/{{this._id}}" title="{{#with ..}}{{__ "Simulate new applicant"}}{{/with}}">{{#with ..}}{{__ "Simulate new applicant"}}{{/with}}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <i class="fas fa-trophy"></i> <a href="/lotterys/simulate/winner/{{this._id}}" title="{{#with ..}}{{__ "Simulate winner"}}{{/with}}">{{#with ..}}{{__ "Simulate winner"}}{{/with}}</a>
+                                </li>
+                                {{#if this.isPublic}}
+                                    <li class="list-group-item bg-danger text-white">
+                                        <i class="fas fa-trophy"></i> <a href="/lotterys/drawwinner/{{this._id}}" onclick="modalConfirm('{{#with ..}}{{__ "Draw a winner now?"}}{{/with}}', this.href, '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}'); return false;" class="text-white" title="{{#with ..}}{{__ "Draw winner"}}">{{__ "Draw winner"}}{{/with}}</a>
+                                    </li>
+                                {{else}}
+                                    {{#if this.winner}}
+                                        <li class="list-group-item bg-secondary text-white">
+                                            <i class="fas fa-trophy"></i> <a href="javascript:void(0)" class="text-white" onclick="modalInfo('<p><strong>{{this.winner.publicName}}</strong></p><hr/><p><a href=\'mailto:{{this.winner.email}}\'>{{this.winner.email}}</a></p><p>{{this.winner.deliverName}}</p><p>{{this.winner.deliverStreet}}</p><p>{{this.winner.deliverZip}} {{this.winner.deliverTown}}</p><p>{{this.winner.deliverCountry}}</p>', '{{#with ..}}{{__ "Winner"}}{{/with}}', '{{#with ..}}{{__ "Ok"}}{{/with}}')">{{this.winner.deliverName}}</a>
+                                        </li>
+                                    {{else}}
+                                        <li class="list-group-item bg-secondary text-white">
+                                            <i class="fas fa-trophy"></i> <a href="javascript:void(0)" onclick="showToast('{{#with ..}}{{__ "Impossible"}}{{/with}}', '{{#with ..}}{{__ "This lottery is not public."}}{{/with}}')" class="text-white" title="{{#with ..}}{{__ "Draw winner"}}{{/with}}">{{#with ..}}{{__ "Draw winner"}}{{/with}}</a>
+                                        </li>
+                                    {{/if}}
+                                {{/if}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

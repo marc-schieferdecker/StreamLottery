@@ -1,0 +1,48 @@
+<div class="content container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1>
+                <a href="/account"><i class="fas fa-chevron-circle-left"></i></a> {{title}}
+            </h1>
+            <small class="bg-light border border-dark p-1">{{__ "Available lotterys"}}</small>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a href="/lotterys/add" class="btn btn-lg btn-secondary float-right"><i class="fas fa-plus-square fa-sm pr-3"></i>{{__ "Add lottery"}}</a>
+        </div>
+    </div>
+    <hr/>
+    <div class="row mt-2">
+        <div class="col-12 mx-auto mt-5">
+            <div class="row equal">
+            {{#unless lotterys}}
+                <div class="mb-5 w-100">
+                    <div class="alert alert-info mt-5 mb-5 w-100 text-center">
+                        {{__ "No lotterys were found. If you want to add one, please click on the \"Add lottery\" button."}}
+                    </div>
+                </div>
+            {{/unless}}
+            {{#each lotterys}}
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 d-flex pb-3">
+                    <div class="card w-100 shadow-sm {{#unless isPublic}}bg-light{{/unless}}">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="/lotterys/edit/{{this._id}}">{{this.name}}</a></h5>
+                            <div class="card-text">
+                                <p>
+                                    {{this.description}}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="text-right card-footer">
+                            <a href="/lotterys/stats/{{this._id}}" class="btn btn-sm btn-primary" title="{{#with ..}}{{__ "Stats"}}{{/with}}"><i class="fas fa-chart-pie"></i></a>
+                            <a href="/lotterys/edit/{{this._id}}" class="btn btn-sm btn-success" title="{{#with ..}}{{__ "edit"}}{{/with}}"><i class="fas fa-edit"></i></a>
+                            <a href="/lotterys/delete/{{this._id}}" onclick="modalConfirm('{{#with ..}}{{__ "Really delete this item?"}}{{/with}}', this.href, '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}'); return false;" class="btn btn-sm btn-danger" title="{{#with ..}}{{__ "delete"}}{{/with}}"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </div>
+                </div>
+            {{/each}}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,212 @@
+<div class="content container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="mb-5"><a href="/account"><i class="fas fa-chevron-circle-left"></i></a> {{title}}</h1>
+        </div>
+        <div class="col-12 mx-auto">
+            {{#if error}}
+                {{#if error.message}}
+                    <div class="alert alert-danger">
+                        {{error.message}}
+                    </div>
+                {{else}}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if success}}
+                <div class="alert alert-success">
+                    <p>{{success}}</p>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link {{#ifCond openTab '==' 'avatar'}}active{{/ifCond}}" id="avatar-tab" data-toggle="tab" href="#avatar" role="tab" aria-controls="avatar" aria-selected="{{#ifCond openTab '==' 'avatar'}}true{{else}}false{{/ifCond}}">{{__ "Avatars"}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{#ifCond openTab '==' 'animation'}}active{{/ifCond}}" id="animation-tab" data-toggle="tab" href="#animation" role="tab" aria-controls="animation" aria-selected="{{#ifCond openTab '==' 'animation'}}true{{else}}false{{/ifCond}}">{{__ "Animations"}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{#ifCond openTab '==' 'image'}}active{{/ifCond}}" id="image-tab" data-toggle="tab" href="#image" role="tab" aria-controls="image" aria-selected="{{#ifCond openTab '==' 'image'}}true{{else}}false{{/ifCond}}">{{__ "Images"}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{#ifCond openTab '==' 'sound'}}active{{/ifCond}}" id="sound-tab" data-toggle="tab" href="#sound" role="tab" aria-controls="sound" aria-selected="{{#ifCond openTab '==' 'sound'}}true{{else}}false{{/ifCond}}">{{__ "Sounds"}}</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link {{#ifCond openTab '==' 'setup'}}active{{/ifCond}}" id="setup-tab" data-toggle="tab" href="#setup" role="tab" aria-controls="setup" aria-selected="{{#ifCond openTab '==' 'setup'}}true{{else}}false{{/ifCond}}">{{__ "Setup"}}</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade {{#ifCond openTab '==' 'avatar'}}show active{{/ifCond}}" id="avatar" role="tabpanel" aria-labelledby="avatar-tab">
+            <div class="row mt-5">
+                <div class="col-12"><h3>{{__ "Upload avatar"}}</h3></div>
+                <div class="col-12 mx-auto">
+                    <form action="/setup/avatar" method="post" enctype="multipart/form-data" onsubmit="modalWait('{{__ "Please wait until your upload has finished"}}.','{{__ "Please wait"}}')">
+                        {{> setup/media-fields filetypes='jpg, png, gif' fieldname='avatar'}}
+                    </form>
+                    <div class="row">
+                        {{#if media.length}}
+                            {{#each media}}
+                                {{#ifCond this.fieldname '==' 'avatar'}}
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                                        <div class="card mb-3 w-100">
+                                            <div class="card-body text-center p-1 m-0 {{#ifCond this._id '==' ../session.user.avatarId._id}}bg-secondary{{/ifCond}}">
+                                                {{#ifCond this._id '!=' ../session.user.avatarId._id}}
+                                                    <a href="javascript:void(0)" class="float-left btn btn-sm btn-success" onclick="modalConfirm('{{#with ..}}{{__ "Set this image as avatar?"}}{{/with}}', '/setup/setavatar/{{this._id}}', '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}')">
+                                                        <i class="far fa-check-square"></i>
+                                                    </a>
+                                                    <a href="javascript:void(0)" class="float-right btn btn-sm btn-danger" onclick="modalConfirm('{{#with ..}}{{__ "Delete image?"}}{{/with}}', '/setup/filedelete/{{this._id}}/avatar', '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}')">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                {{else}}
+                                                    <a class="btn btn-sm btn-light">
+                                                        <i class="fas fa-portrait"></i>
+                                                    </a>
+                                                {{/ifCond}}
+                                                <a href="{{this.secure_url}}" class="imagelightbox">
+                                                    <img src="{{this.secure_url}}" class="card-img pt-1"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/ifCond}}
+                            {{/each}}
+                        {{else}}
+                            <div class="col">
+                                <p>{{__ "No media found"}}.</p>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade {{#ifCond openTab '==' 'animation'}}show active{{/ifCond}}" id="animation" role="tabpanel" aria-labelledby="animation-tab">
+            <div class="row mt-5">
+                <div class="col-12"><h3>{{__ "Upload animation"}}</h3></div>
+                <div class="col-12 mx-auto">
+                    <form action="/setup/animation" method="post" enctype="multipart/form-data" onsubmit="modalWait('{{__ "Please wait until your upload has finished"}}.','{{__ "Please wait"}}')">
+                        {{> setup/media-fields filetypes='gif' fieldname='animation'}}
+                        <p><a href="https://giphy.com/categories" target="_blank" class="btn btn-sm btn-light">Get some cool GIFs here</a></p>
+                    </form>
+                    <div class="row">
+                        {{#if media.length}}
+                            {{#each media}}
+                                {{#ifCond this.fieldname '==' 'animation'}}
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                                        <div class="card mb-3 w-100">
+                                            <div class="card-body text-center p-1 m-0">
+                                                <a href="javascript:void(0)" class="float-right btn btn-sm btn-danger" onclick="modalConfirm('{{#with ..}}{{__ "Delete image?"}}{{/with}}', '/setup/filedelete/{{this._id}}/animation', '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <a href="{{this.secure_url}}" class="imagelightbox">
+                                                    <img src="{{this.secure_url}}" class="card-img pt-1"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/ifCond}}
+                            {{/each}}
+                        {{else}}
+                            <div class="col">
+                                <p>{{__ "No media found"}}.</p>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade {{#ifCond openTab '==' 'image'}}show active{{/ifCond}}" id="image" role="tabpanel" aria-labelledby="image-tab">
+            <div class="row mt-5">
+                <div class="col-12"><h3>{{__ "Upload image"}}</h3></div>
+                <div class="col-12 mx-auto">
+                    <form action="/setup/image" method="post" enctype="multipart/form-data" onsubmit="modalWait('{{__ "Please wait until your upload has finished"}}.','{{__ "Please wait"}}')">
+                        {{> setup/media-fields filetypes='jpg, png, gif' fieldname='image'}}
+                    </form>
+                    <div class="row">
+                        {{#if media.length}}
+                            {{#each media}}
+                                {{#ifCond this.fieldname '==' 'image'}}
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 d-flex align-content-stretch flex-wrap">
+                                        <div class="card mb-3 w-100">
+                                            <div class="card-body text-center p-1 m-0">
+                                                <a href="javascript:void(0)" class="float-right btn btn-sm btn-danger" onclick="modalConfirm('{{#with ..}}{{__ "Delete image?"}}{{/with}}', '/setup/filedelete/{{this._id}}/image', '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <a href="{{this.secure_url}}" class="imagelightbox">
+                                                    <img src="{{this.secure_url}}" class="card-img pt-1"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/ifCond}}
+                            {{/each}}
+                        {{else}}
+                            <div class="col">
+                                <p>{{__ "No media found"}}.</p>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade {{#ifCond openTab '==' 'sound'}}show active{{/ifCond}}" id="sound" role="tabpanel" aria-labelledby="sound-tab">
+            <div class="row mt-5">
+                <div class="col-12"><h3>{{__ "Upload sound"}}</h3></div>
+                <div class="col-12 mx-auto">
+                    <form action="/setup/sound" method="post" enctype="multipart/form-data" onsubmit="modalWait('{{__ "Please wait until your upload has finished"}}.','{{__ "Please wait"}}')">
+                        {{> setup/media-fields filetypes='wav, mp3, ogg' fieldname='sound'}}
+                    </form>
+                    <div class="row">
+                        {{#if media.length}}
+                            {{#each media}}
+                                {{#ifCond this.fieldname '==' 'sound'}}
+                                    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 d-flex align-content-stretch flex-wrap">
+                                        <div class="card mb-3 w-100">
+                                            <div class="card-body text-center p-1 m-0">
+                                                <div class="mt-2">
+                                                    <audio controls src="{{this.secure_url}}">{{#with ..}}{{__ "Your browser does not support the audio element"}}{{/with}}.</audio>
+                                                </div>
+                                                <div>
+                                                    <small>{{this.originalname}}</small>
+                                                </div>
+                                                <a href="javascript:void(0)" class="float-right btn btn-sm btn-danger" onclick="modalConfirm('{{#with ..}}{{__ "Delete sound?"}}{{/with}}', '/setup/filedelete/{{this._id}}/sound', '{{#with ..}}{{__ "Really?"}}{{/with}}', '{{#with ..}}{{__ "Yes"}}{{/with}}', '{{#with ..}}{{__ "No"}}{{/with}}')">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {{/ifCond}}
+                            {{/each}}
+                        {{else}}
+                            <div class="col">
+                                <p>{{__ "No media found"}}.</p>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade {{#ifCond openTab '==' 'setup'}}show active{{/ifCond}}" id="setup" role="tabpanel" aria-labelledby="setup-tab">
+            <div class="row mt-5">
+                <div class="col-12"><h3>{{__ "Configuration"}}</h3></div>
+                <div class="col-12 mx-auto">
+                    <form action="/setup/setup" method="post">
+                        {{> setup/setup-fields}}
+
+                        <div class="form-row mt-5">
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-block btn-lg btn-primary">{{__ "Save setup"}}</button>
+                            </div>
+                            <div class="col-auto">
+                                <a href="/" class="btn btn-block btn-lg btn-secondary">{{__ "Go back"}}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

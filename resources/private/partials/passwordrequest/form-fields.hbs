@@ -1,0 +1,13 @@
+<div class="form-group row">
+    <div class="col-12">
+        <label for="email">
+            {{__ "Your email address"}}
+        </label>
+    </div>
+    <div class="col-xl-6 col-lg-7 col-md-8 col-sm-12">
+        <input type="email" name="email" id="email" value="{{email}}" class="form-control form-control-lg {{#if errors.email.message}}border-danger{{/if}}" required="required" placeholder="{{__ "Enter your email"}}...">
+        {{#if errors.email.message}}
+            <small class="text-danger">{{errors.email.message}}</small>
+        {{/if}}
+    </div>
+</div>

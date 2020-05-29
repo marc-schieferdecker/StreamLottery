@@ -1,0 +1,24 @@
+<!-- Masthead -->
+<header class="masthead text-white text-center">
+    <div class="container">
+        <div class="row pt-4 pb-5">
+            <div class="col-xl-9 mx-auto">
+                <h1 class="mb-5">{{__ "IntroText"}}</h1>
+            </div>
+            <div class="col-md-10 col-lg-8 col-xl-7 mx-auto">
+                <form action="/signup" method="get">
+                    <div class="form-row">
+                        <div class="col-12 col-md-7 mb-2">
+                            <input type="email" name="email" class="form-control form-control-lg" required="required" placeholder="{{__ "Enter your email"}}...">
+                        </div>
+                        <div class="col-12 col-md-5">
+                            <button type="submit" class="btn btn-lg btn-primary">{{__ "Sign up!"}}</button>
+                            <a href="/static/about" class="btn btn-lg btn-secondary">{{__ "About"}}</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="overlay"><video src="/videos/preview-video.mp4" class="w-100" muted="muted" autoplay="autoplay" loop="loop"></video></div>
+</header>
