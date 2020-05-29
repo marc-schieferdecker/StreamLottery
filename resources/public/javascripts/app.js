@@ -238,3 +238,25 @@ function modalInfo(body, labelMsg, closeMsg) {
     $('body').append(modalTemplate);
     $('#modalInfo').modal({keyboard: true, focus:true, show:true});
 }
+
+/**
+ * Check file upload size (limit to 2M)
+ * @param fieldname
+ * @param element
+ */
+function checkFileSize(fieldname, element) {
+    try {
+        let fileSize = (element.files[0].size / 1024 / 1024).toFixed(2);
+        if(fileSize > 2) {
+            $('#'+fieldname+'FileSize').text(fileSize + 'M (max. 2M)');
+            $('#'+fieldname+'FileSize').addClass('text-danger').removeClass('text-success');
+            $(element).val('');
+        }
+        else {
+            $('#'+fieldname+'FileSize').text(fileSize + 'M');
+            $('#'+fieldname+'FileSize').addClass('text-success').removeClass('text-danger');
+        }
+    } catch(e) {
+        console.log('file upload size check exception', e, element.files);
+    }
+}
