@@ -19,7 +19,7 @@
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "express-force-ssl": "^0.3.2",
-    "express-handlebars": "^3.0.2",
+    "express-handlebars": "^5.3.1",
     "express-minify": "^1.0.0",
     "express-session": "^1.16.1",
     "flag-icon-css": "^3.3.0",
